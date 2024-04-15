@@ -17,7 +17,7 @@ class CidadeRomenia {
             caminho.push(cidadeAtual); // Adiciona cidade atual ao caminho
 
             if (cidadeAtual === this.objetivo) { // Se a cidade atual é o objetivo, termina a busca
-                return `Chegou a ${cidadeAtual}, o objetivo foi encontrado! e o caminho foi: ${caminho}`;
+                return `Chegou a ${cidadeAtual}, o objetivo foi encontrado!\nE o caminho foi: ${caminho.join(' -> ')}`;
             }
 
             visitados.add(cidadeAtual); // Marca cidade atual como visitada
