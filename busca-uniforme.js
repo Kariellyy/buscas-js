@@ -15,10 +15,10 @@ class CidadeRomenia {
             let cidadeAtual = fila.shift(); // Remove o primeiro nó da fila
 
             // Registra a visita atual
-            visitas.push(`Visitada: ${cidadeAtual.cidade} | Custo: ${cidadeAtual.custo} | Caminho: ${cidadeAtual.caminho.join(' -> ')}`); 
+            visitas.push(`Visitada: ${cidadeAtual.cidade} | Custo: ${cidadeAtual.custo} | Caminho: ${cidadeAtual.caminho.join(' -> ')}`);
 
             // Verifica se o objetivo foi alcançado
-            if (cidadeAtual.cidade === this.objetivo) {
+            if (cidadeAtual.cidade === this.objetivo) { // Se a cidade atual é o objetivo, termina a busca
                 return {
                     resultado: `Objetivo alcançado: ${cidadeAtual.cidade}! Custo total: ${cidadeAtual.custo}`,
                     caminho: cidadeAtual.caminho.join(' -> '),
@@ -26,15 +26,15 @@ class CidadeRomenia {
                 };
             }
 
-            let vizinhos = this.mapa_romenia[cidadeAtual.cidade] || {};
-            for (let vizinho in vizinhos) {
-                let novoCusto = cidadeAtual.custo + vizinhos[vizinho];
-                if (custos[vizinho] === undefined || novoCusto < custos[vizinho]) {
-                    custos[vizinho] = novoCusto;
-                    fila.push({
+            let vizinhos = this.mapa_romenia[cidadeAtual.cidade] || {}; // Vizinhos da cidade atual
+            for (let vizinho in vizinhos) { // Para cada vizinho
+                let novoCusto = cidadeAtual.custo + vizinhos[vizinho]; // Calcula o novo custo
+                if (custos[vizinho] === undefined || novoCusto < custos[vizinho]) { // Se o custo é menor
+                    custos[vizinho] = novoCusto; // Atualiza o custo
+                    fila.push({ // Adiciona o vizinho à fila
                         cidade: vizinho,
                         custo: novoCusto,
-                        caminho: [...cidadeAtual.caminho, vizinho]
+                        caminho: [...cidadeAtual.caminho, vizinho] // Adiciona o vizinho ao caminho
                     });
                 }
             }
